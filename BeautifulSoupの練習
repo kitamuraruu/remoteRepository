@@ -1,0 +1,26 @@
+import requests
+from bs4 import BeautifulSoup
+
+url:str='https://www.yomiuri.co.jp/'
+
+#URLからHTMLを取得
+response = requests.get(url)
+
+#HTMLを解析
+soup = BeautifulSoup(response.text,"html.parser")
+
+#CSSセレクタを使って指定した要素を取得
+elems=soup.select('body > div.uni-home > div > main > div.home-l-main__primary > section.home-headline > div.home-headline__contents > div > div:nth-of-type(2) > h3 > a')
+
+#取得した要素の中身を表示
+#print(elems[0].contents[0])
+
+#取得した要素のリンクを表示
+#print(elems[0].attrs['href'])
+
+#取得した要素の中身とリンクをすべて表示
+for elem in elems:
+    print(elem.contents[0])
+    print(elem.attrs['href'])
+    print('')
+
